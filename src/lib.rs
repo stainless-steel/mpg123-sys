@@ -1,4 +1,4 @@
-//! Binding to [mpg123][1].
+//! Bindings to [mpg123][1].
 //!
 //! [1]: https://www.mpg123.de/
 
