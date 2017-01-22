@@ -1,3 +1,7 @@
+//! Binding to [mpg123][1].
+//!
+//! [1]: https://www.mpg123.de/
+
 #![allow(non_camel_case_types)]
 
 extern crate libc;

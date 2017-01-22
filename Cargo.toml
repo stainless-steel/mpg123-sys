@@ -1,7 +1,12 @@
 [package]
 name = "mpg123-sys"
 version = "0.0.1"
+license = "Apache-2.0/MIT"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
+description = "The package provides bindings to mpg123."
+documentation = "https://docs.rs/mpg123-sys"
+homepage = "https://github.com/stainless-steel/mpg123-sys"
+repository = "https://github.com/stainless-steel/mpg123-sys"
 build = "build.rs"
 links = "mpg123"
 
