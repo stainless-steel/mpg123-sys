@@ -27,6 +27,45 @@ pub use mpg123_channels::*;
 
 #[derive(Clone, Copy)]
 #[repr(C)]
+pub enum mpg123_enc_enum {
+    MPG123_ENC_8 = 0x00f,
+    MPG123_ENC_16 = 0x040,
+    MPG123_ENC_24 = 0x4000,
+    MPG123_ENC_32 = 0x100,
+    MPG123_ENC_SIGNED = 0x080,
+    MPG123_ENC_FLOAT = 0xe00,
+    MPG123_ENC_SIGNED_16 = MPG123_ENC_16 as isize |
+                           MPG123_ENC_SIGNED as isize | 0x10,
+    MPG123_ENC_UNSIGNED_16 = MPG123_ENC_16 as isize | 0x20,
+    MPG123_ENC_UNSIGNED_8 = 0x01,
+    MPG123_ENC_SIGNED_8 = MPG123_ENC_SIGNED as isize | 0x02,
+    MPG123_ENC_ULAW_8 = 0x04,
+    MPG123_ENC_ALAW_8 = 0x08,
+    MPG123_ENC_SIGNED_32 = MPG123_ENC_32 as isize |
+                           MPG123_ENC_SIGNED as isize | 0x1000,
+    MPG123_ENC_UNSIGNED_32 = MPG123_ENC_32 as isize | 0x2000,
+    MPG123_ENC_SIGNED_24 = MPG123_ENC_24 as isize |
+                           MPG123_ENC_SIGNED as isize | 0x1000,
+    MPG123_ENC_UNSIGNED_24 = MPG123_ENC_24 as isize | 0x2000,
+    MPG123_ENC_FLOAT_32 = 0x200,
+    MPG123_ENC_FLOAT_64 = 0x400,
+    MPG123_ENC_ANY = MPG123_ENC_SIGNED_8 as isize |
+                     MPG123_ENC_SIGNED_16 as isize |
+                     MPG123_ENC_SIGNED_24 as isize |
+                     MPG123_ENC_SIGNED_32 as isize |
+                     MPG123_ENC_UNSIGNED_8 as isize |
+                     MPG123_ENC_UNSIGNED_16 as isize |
+                     MPG123_ENC_UNSIGNED_24 as isize |
+                     MPG123_ENC_UNSIGNED_32 as isize |
+                     MPG123_ENC_ALAW_8 as isize |
+                     MPG123_ENC_ULAW_8 as isize |
+                     MPG123_ENC_FLOAT_32 as isize |
+                     MPG123_ENC_FLOAT_64 as isize,
+}
+pub use mpg123_enc_enum::*;
+
+#[derive(Clone, Copy)]
+#[repr(C)]
 pub enum mpg123_errors {
     MPG123_DONE = -12,
     MPG123_NEW_FORMAT = -11,
@@ -109,6 +148,14 @@ pub enum mpg123_flags {
     MPG123_ORIGINAL = 0x8,
 }
 pub use mpg123_flags::*;
+
+#[derive(Clone, Copy)]
+#[repr(C)]
+pub struct mpg123_fmt {
+    pub rate: c_long,
+    pub channels: c_int,
+    pub encoding: c_int,
+}
 
 #[derive(Clone, Copy)]
 #[repr(C)]
