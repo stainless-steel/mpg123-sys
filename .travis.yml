@@ -20,5 +20,9 @@ install:
       ./configure && make && sudo make install && cd -;
     fi
 
+script:
+  - cargo build
+  - cargo build --features static
+
 notifications:
   email: false

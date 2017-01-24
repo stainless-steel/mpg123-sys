@@ -10,6 +10,9 @@ repository = "https://github.com/stainless-steel/mpg123-sys"
 build = "build.rs"
 links = "mpg123"
 
+[features]
+static = []
+
 [dependencies]
 libc = "0.2"
 
