@@ -1,13 +1,13 @@
 [package]
 name = "mpg123-sys"
-version = "0.4.0"
+version = "0.4.1"
 license = "Apache-2.0/MIT"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 description = "The package provides bindings to mpg123."
 documentation = "https://docs.rs/mpg123-sys"
 homepage = "https://github.com/stainless-steel/mpg123-sys"
 repository = "https://github.com/stainless-steel/mpg123-sys"
-categories = ["encoding", "external-ffi-bindings", "multimedia"]
+categories = ["encoding", "external-ffi-bindings", "multimedia::audio"]
 keywords = ["audio", "decoding", "sound"]
 build = "build.rs"
 links = "mpg123"
