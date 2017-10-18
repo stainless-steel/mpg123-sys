@@ -4,6 +4,8 @@
 
 #![allow(non_camel_case_types)]
 
+#[macro_use]
+extern crate bitflags;
 extern crate libc;
 
 use libc::{c_char, c_double, c_int, c_long, c_uchar, c_ulong, c_void, off_t, size_t, ssize_t};
@@ -25,44 +27,51 @@ pub enum mpg123_channels {
 }
 pub use mpg123_channels::*;
 
-#[derive(Clone, Copy)]
-#[repr(C)]
-pub enum mpg123_enc_enum {
-    MPG123_ENC_8 = 0x00f,
-    MPG123_ENC_16 = 0x040,
-    MPG123_ENC_24 = 0x4000,
-    MPG123_ENC_32 = 0x100,
-    MPG123_ENC_SIGNED = 0x080,
-    MPG123_ENC_FLOAT = 0xe00,
-    MPG123_ENC_SIGNED_16 = MPG123_ENC_16 as isize |
-                           MPG123_ENC_SIGNED as isize | 0x10,
-    MPG123_ENC_UNSIGNED_16 = MPG123_ENC_16 as isize | 0x20,
-    MPG123_ENC_UNSIGNED_8 = 0x01,
-    MPG123_ENC_SIGNED_8 = MPG123_ENC_SIGNED as isize | 0x02,
-    MPG123_ENC_ULAW_8 = 0x04,
-    MPG123_ENC_ALAW_8 = 0x08,
-    MPG123_ENC_SIGNED_32 = MPG123_ENC_32 as isize |
-                           MPG123_ENC_SIGNED as isize | 0x1000,
-    MPG123_ENC_UNSIGNED_32 = MPG123_ENC_32 as isize | 0x2000,
-    MPG123_ENC_SIGNED_24 = MPG123_ENC_24 as isize |
-                           MPG123_ENC_SIGNED as isize | 0x1000,
-    MPG123_ENC_UNSIGNED_24 = MPG123_ENC_24 as isize | 0x2000,
-    MPG123_ENC_FLOAT_32 = 0x200,
-    MPG123_ENC_FLOAT_64 = 0x400,
-    MPG123_ENC_ANY = MPG123_ENC_SIGNED_8 as isize |
-                     MPG123_ENC_SIGNED_16 as isize |
-                     MPG123_ENC_SIGNED_24 as isize |
-                     MPG123_ENC_SIGNED_32 as isize |
-                     MPG123_ENC_UNSIGNED_8 as isize |
-                     MPG123_ENC_UNSIGNED_16 as isize |
-                     MPG123_ENC_UNSIGNED_24 as isize |
-                     MPG123_ENC_UNSIGNED_32 as isize |
-                     MPG123_ENC_ALAW_8 as isize |
-                     MPG123_ENC_ULAW_8 as isize |
-                     MPG123_ENC_FLOAT_32 as isize |
-                     MPG123_ENC_FLOAT_64 as isize,
+bitflags! {
+    #[repr(C)]
+    pub struct mpg123_enc_enum: c_int {
+        const MPG123_ENC_8           = 0x000f;
+        const MPG123_ENC_16          = 0x0040;
+        const MPG123_ENC_24          = 0x4000;
+        const MPG123_ENC_32          = 0x0100;
+        const MPG123_ENC_SIGNED      = 0x0080;
+        const MPG123_ENC_FLOAT       = 0x0e00;
+        const MPG123_ENC_SIGNED_16   = Self::MPG123_ENC_16.bits
+                                     | Self::MPG123_ENC_SIGNED.bits
+                                     | 0x0010;
+        const MPG123_ENC_UNSIGNED_16 = Self::MPG123_ENC_16.bits
+                                     | 0x0020;
+        const MPG123_ENC_UNSIGNED_8  = 0x0001;
+        const MPG123_ENC_SIGNED_8    = Self::MPG123_ENC_SIGNED.bits
+                                     | 0x0002;
+        const MPG123_ENC_ULAW_8      = 0x0004;
+        const MPG123_ENC_ALAW_8      = 0x0008;
+        const MPG123_ENC_SIGNED_32   = Self::MPG123_ENC_32.bits
+                                     | Self::MPG123_ENC_SIGNED.bits
+                                     | 0x1000;
+        const MPG123_ENC_UNSIGNED_32 = Self::MPG123_ENC_32.bits
+                                     | 0x2000;
+        const MPG123_ENC_SIGNED_24   = Self::MPG123_ENC_24.bits
+                                     | Self::MPG123_ENC_SIGNED.bits
+                                     | 0x1000;
+        const MPG123_ENC_UNSIGNED_24 = Self::MPG123_ENC_24.bits
+                                     | 0x2000;
+        const MPG123_ENC_FLOAT_32    = 0x0200;
+        const MPG123_ENC_FLOAT_64    = 0x0400;
+        const MPG123_ENC_ANY         = Self::MPG123_ENC_SIGNED_8.bits
+                                     | Self::MPG123_ENC_SIGNED_16.bits
+                                     | Self::MPG123_ENC_SIGNED_24.bits
+                                     | Self::MPG123_ENC_SIGNED_32.bits
+                                     | Self::MPG123_ENC_UNSIGNED_8.bits
+                                     | Self::MPG123_ENC_UNSIGNED_16.bits
+                                     | Self::MPG123_ENC_UNSIGNED_24.bits
+                                     | Self::MPG123_ENC_UNSIGNED_32.bits
+                                     | Self::MPG123_ENC_ALAW_8.bits
+                                     | Self::MPG123_ENC_ULAW_8.bits
+                                     | Self::MPG123_ENC_FLOAT_32.bits
+                                     | Self::MPG123_ENC_FLOAT_64.bits;
+    }
 }
-pub use mpg123_enc_enum::*;
 
 #[derive(Clone, Copy)]
 #[repr(C)]
