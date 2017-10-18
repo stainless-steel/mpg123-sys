@@ -7,6 +7,7 @@ description = "The package provides bindings to mpg123."
 documentation = "https://docs.rs/mpg123-sys"
 homepage = "https://github.com/stainless-steel/mpg123-sys"
 repository = "https://github.com/stainless-steel/mpg123-sys"
+readme = "README.md"
 categories = ["encoding", "external-ffi-bindings", "multimedia::audio"]
 keywords = ["audio", "decoding", "sound"]
 build = "build.rs"
