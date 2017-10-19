@@ -18,14 +18,14 @@ pub enum mpg123_channelcount {
 }
 pub use mpg123_channelcount::*;
 
-#[derive(Clone, Copy)]
-#[repr(C)]
-pub enum mpg123_channels {
-    MPG123_LEFT = 0x1,
-    MPG123_RIGHT = 0x2,
-    MPG123_LR = 0x3,
+bitflags! {
+    #[repr(C)]
+    pub struct mpg123_channels: c_int {
+        const MPG123_LEFT  = 0x1;
+        const MPG123_RIGHT = 0x2;
+        const MPG123_LR    = 0x3;
+    }
 }
-pub use mpg123_channels::*;
 
 bitflags! {
     #[repr(C)]
@@ -148,15 +148,15 @@ pub enum mpg123_feature_set {
 }
 pub use mpg123_feature_set::*;
 
-#[derive(Clone, Copy)]
-#[repr(C)]
-pub enum mpg123_flags {
-    MPG123_CRC = 0x1,
-    MPG123_COPYRIGHT = 0x2,
-    MPG123_PRIVATE = 0x4,
-    MPG123_ORIGINAL = 0x8,
+bitflags! {
+    #[repr(C)]
+    pub struct mpg123_flags: c_int {
+        const MPG123_CRC       = 0x1;
+        const MPG123_COPYRIGHT = 0x2;
+        const MPG123_PRIVATE   = 0x4;
+        const MPG123_ORIGINAL  = 0x8;
+    }
 }
-pub use mpg123_flags::*;
 
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -290,29 +290,29 @@ pub enum mpg123_parms {
 }
 pub use mpg123_parms::*;
 
-#[derive(Clone, Copy)]
-#[repr(C)]
-pub enum mpg123_param_flags {
-    MPG123_FORCE_MONO = 0x7,
-    MPG123_MONO_LEFT = 0x1,
-    MPG123_MONO_RIGHT = 0x2,
-    MPG123_MONO_MIX = 0x4,
-    MPG123_FORCE_STEREO = 0x8,
-    MPG123_FORCE_8BIT = 0x10,
-    MPG123_QUIET = 0x20,
-    MPG123_GAPLESS = 0x40,
-    MPG123_NO_RESYNC = 0x80,
-    MPG123_SEEKBUFFER = 0x100,
-    MPG123_FUZZY = 0x200,
-    MPG123_FORCE_FLOAT = 0x400,
-    MPG123_PLAIN_ID3TEXT = 0x800,
-    MPG123_IGNORE_STREAMLENGTH = 0x1000,
-    MPG123_SKIP_ID3V2 = 0x2000,
-    MPG123_IGNORE_INFOFRAME = 0x4000,
-    MPG123_AUTO_RESAMPLE = 0x8000,
-    MPG123_PICTURE = 0x10000,
+bitflags! {
+    #[repr(C)]
+    pub struct mpg123_param_flags: c_int {
+        const MPG123_FORCE_MONO          = 0x00007;
+        const MPG123_MONO_LEFT           = 0x00001;
+        const MPG123_MONO_RIGHT          = 0x00002;
+        const MPG123_MONO_MIX            = 0x00004;
+        const MPG123_FORCE_STEREO        = 0x00008;
+        const MPG123_FORCE_8BIT          = 0x00010;
+        const MPG123_QUIET               = 0x00020;
+        const MPG123_GAPLESS             = 0x00040;
+        const MPG123_NO_RESYNC           = 0x00080;
+        const MPG123_SEEKBUFFER          = 0x00100;
+        const MPG123_FUZZY               = 0x00200;
+        const MPG123_FORCE_FLOAT         = 0x00400;
+        const MPG123_PLAIN_ID3TEXT       = 0x00800;
+        const MPG123_IGNORE_STREAMLENGTH = 0x01000;
+        const MPG123_SKIP_ID3V2          = 0x02000;
+        const MPG123_IGNORE_INFOFRAME    = 0x04000;
+        const MPG123_AUTO_RESAMPLE       = 0x08000;
+        const MPG123_PICTURE             = 0x10000;
+    }
 }
-pub use mpg123_param_flags::*;
 
 #[derive(Clone, Copy)]
 #[repr(C)]
